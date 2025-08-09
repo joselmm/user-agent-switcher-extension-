@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Agent</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <style>
+    body {
+      background-color: #121212;
+      color: #ffffff;
+    }
+
+    textarea {
+      background-color: #1e1e1e;
+      color: #fff;
+      border: 1px solid #444;
+    }
+
+    label {
+      color: #ccc;
+    }
+
+    .btn-primary {
+      background-color: #0d6efd;
+      border-color: #0d6efd;
+    }
+
+    .btn-success {
+      background-color: #198754;
+      border-color: #198754;
+    }
+
+    .text-success {
+      color: #4ade80 !important;
+    }
+
+    input[type="radio"], input[type="checkbox"] {
+      accent-color: #0d6efd;
+    }
+  </style>
+</head>
+<body class="text-center mt-4" style="width: 400px;">
+  <h3>User Agent</h3>
+  <form id="theform">
+    <textarea id="texto" style="height: 100px; width: 90dvw;" readonly></textarea>
+
+    <div class="mb-3 mt-2">
+      <input type="radio" name="type" id="iphone" value="iphone" checked>
+      <label for="iphone" class="me-3">IPHONE</label>
+
+      <input type="radio" name="type" id="android" value="android">
+      <label for="android">ANDROID</label>
+    </div>
+
+    <div class="form-check form-switch d-flex justify-content-center mb-3">
+      <input class="form-check-input" type="checkbox" id="toggle-ua">
+      <label class="form-check-label ms-2" for="toggle-ua">Activar cambio de User-Agent</label>
+    </div>
+
+    <div class="text-success" hidden id="guardado">✅ Guardado</div>
+
+    <button type="submit" id="generar" class="btn btn-primary mb-2">Generar</button>
+    <button type="button" id="guardar" class="btn btn-success mb-2">Guardar</button>
+  </form>
+
+  <script src="popup.js"></script>
+</body>
+</html>

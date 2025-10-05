@@ -20,6 +20,7 @@ document.getElementById("theform").addEventListener("submit", e => {
   const array = type === "android" ? androidArray : iphoneArray;
   const randomIndex = Math.floor(Math.random() * array.length);
   campoTexto.value = array[randomIndex] || "Error cargando user agents";
+  guardarBtn.click();
 });
 
 guardarBtn.addEventListener("click", () => {
@@ -41,3 +42,15 @@ chrome.storage.local.get("uaEnabled", (data) => {
 toggleUA.addEventListener("change", () => {
   chrome.storage.local.set({ uaEnabled: toggleUA.checked });
 });
+
+//CARGAR USER AGENT ACTUAL
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Recuperar el último userAgent guardado
+  chrome.storage.local.get("userAgent", (data) => {
+    if (data.userAgent) {
+      campoTexto.value = data.userAgent;
+    }
+  });
+});
+

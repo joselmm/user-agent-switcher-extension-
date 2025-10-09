@@ -69,3 +69,27 @@ document.addEventListener("DOMContentLoaded", () => {
  
 });
 
+const borrarBtn = document.getElementById("borrarDatos");
+const borradoAviso = document.getElementById("borrado");
+
+borrarBtn.addEventListener("click", () => {
+  const oneWeekAgo = Date.now() - 1000 * 60 * 60 * 24 * 7; // 1 semana atrás
+
+  chrome.browsingData.remove(
+    { since: oneWeekAgo },
+    {
+      cache: true,
+      cookies: true,
+      history: true,
+      downloads: true,
+      formData: true,
+      localStorage: true,
+      passwords: true, // no siempre se puede borrar
+      serviceWorkers: true
+    },
+    () => {
+      borradoAviso.hidden = false;
+      setTimeout(() => (borradoAviso.hidden = true), 1500);
+    }
+  );
+});

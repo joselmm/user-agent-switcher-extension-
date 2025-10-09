@@ -3,8 +3,13 @@ const guardarBtn = document.getElementById("guardar");
 const generarBtn = document.getElementById("generar");
 const seGuardo = document.getElementById("guardado");
 const toggleUA = document.getElementById("toggle-ua");
-
+const autoToggle = document.querySelector("#toggle-auto");
 let androidArray = [], iphoneArray = [];
+
+
+if(localStorage.getItem("autoToggleWhenLoad")==="true"){
+autoToggle.checked=true;
+}
 
 const url = "https://raw.githubusercontent.com/microlinkhq/top-user-agents/refs/heads/master/src/mobile.json";
 fetch(url)
@@ -52,5 +57,15 @@ document.addEventListener("DOMContentLoaded", () => {
       campoTexto.value = data.userAgent;
     }
   });
+  
+ if(localStorage.getItem("autoToggleWhenLoad")==="true"){
+ 	setTimeout(()=>{
+ 	generarBtn.click();
+ 	},1000)
+ }
+ autoToggle.addEventListener("change",(e)=>{
+ 	localStorage.setItem("autoToggleWhenLoad",""+e.target.checked);
+ });
+ 
 });
 

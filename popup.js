@@ -4,12 +4,21 @@ const generarBtn = document.getElementById("generar");
 const seGuardo = document.getElementById("guardado");
 const toggleUA = document.getElementById("toggle-ua");
 const autoToggle = document.querySelector("#toggle-auto");
+const autoClearBrowser = document.querySelector("#clear-browser-auto");
 let androidArray = [], iphoneArray = [];
+const borrarBtn = document.getElementById("borrarDatos");
+const borradoAviso = document.getElementById("borrado");
+
 
 
 if(localStorage.getItem("autoToggleWhenLoad")==="true"){
 autoToggle.checked=true;
 }
+
+if(localStorage.getItem("autoClearBrowserWhenLoad")==="true"){
+autoClearBrowser.checked=true;
+}
+
 
 const url = "https://raw.githubusercontent.com/microlinkhq/top-user-agents/refs/heads/master/src/mobile.json";
 fetch(url)
@@ -63,14 +72,25 @@ document.addEventListener("DOMContentLoaded", () => {
  	generarBtn.click();
  	},1000)
  }
+ 
+  if(localStorage.getItem("autoClearBrowserWhenLoad")==="true"){
+ 	setTimeout(()=>{
+ 	borrarBtn .click();
+ 	},1000)
+ }
+
+ 
  autoToggle.addEventListener("change",(e)=>{
  	localStorage.setItem("autoToggleWhenLoad",""+e.target.checked);
  });
  
+  autoClearBrowser.addEventListener("change",(e)=>{
+ 	localStorage.setItem("autoClearBrowserWhenLoad",""+e.target.checked);
+ });
+
+ 
 });
 
-const borrarBtn = document.getElementById("borrarDatos");
-const borradoAviso = document.getElementById("borrado");
 
 borrarBtn.addEventListener("click", () => {
   const oneWeekAgo = Date.now() - 1000 * 60 * 60 * 24 * 7; // 1 semana atrás
